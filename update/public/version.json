@@ -1,26 +1,26 @@
 {
-  "_note": "本文件描述 public 渠道（应用名「念念」/ 包名 com.aiai.pub）。2026-11-03（1.8.3 修复版）：①勿扰弹窗 off-menu 值高亮（`dndDialogOptions` / `ChatScreen` 顶栏同一根因）；②`InputDialog` 初值迟到（`adoptLateInitial` + `LaunchedEffect(initial)`）；③选中项对不上清单的两处（`ConnectionScreen` 模型、`MemoryEditScreen` 归属会话，改走 `choiceOptionsWithCurrent` + `label in …` 守卫）；④`loadEarlier` 读失败不再谎报到底（`reachedStartAfter(loaded: Int?, pageSize)`）；⑤设置页搜索词补「心智 / Ta今天 / 忘事 / 生日 / 称呼 / 心情状态入口」；⑥惦记记账挪到投递成功之后（`confirmDelivered`）+ `AttachmentTracker.onPlanned/onDelivered` 拆分，失败不占当日额度；⑦`jobs.remove(sessionId, self)` 按身份摘，连发两条不再误删新任务登记项。⑧记忆导入判重按角色卡收窄（`filterMemoriesByPersona`）。★ 本版是 1.8.2 之后的**修复版**，没有新功能 —— changelog 取的是「1.8.2 → 本版」的增量。sizeBytes / sha256 取自这一轮签名产物（apksigner 核 V3 签名证书 SHA-256 = c0fe80a275f01f0d54f008c4a8bcd5b5c690e6151b2df594ca5e985eab8c0e0e；包内 assets/changelog.json 顶部 = 1.8.3 / 2026110301 / 3 节，与源码逐字节一致）。",
+  "_note": "本文件描述 public 渠道（应用名「念念」/ 包名 com.aiai.pub）。2026-11-03（1.8.4）：①`AuxPresets` 三槽扩表（生图 8 条含 Kolors / Qwen-Image / Z-Image(-Turbo) / Qwen-Image-Edit(-2509) / MOSS-Image / cogview-3-flash；看图补硅基流动 Qwen3-VL-32B 与 Qwen3-Omni-30B-A3B；听觉补 Qwen3-Omni），删掉官方已下线的 FLUX.1-schnell、不列 ERNIE-Image-Turbo；②`ImageGenCodec.needsImageSize` 对硅基流动补 `image_size`（Edit 系跳过），尺寸设置终于生效；③`ContentPartDto.audioUrl` + `AudioUnderstandCodec.needsAudioUrl`，硅基流动走 `audio_url` 部件；④`ModelCatalog` 新增 MOONSHOT / HUNYUAN 两家预设与 SILICONFLOW 10 条内置清单 + 三家视觉名单。★ 本版是 1.8.3 之后的**功能补全 + 协议修复**：三槽厂商预设扩充（生图 3→8、看图 5→7、听觉 2→3）、主模型新增 Kimi / 腾讯混元 / 硅基流动内置清单，并修好两处一直没生效的协议差异（硅基流动的 image_size 尺寸字段、audio_url 音频部件）。sizeBytes / sha256 取自这一轮签名产物（V3 证书 SHA-256 = c0fe80a275f01f0d54f008c4a8bcd5b5c690e6151b2df594ca5e985eab8c0e0e；包内 assets/changelog.json 与源码逐字节一致，顶部 = 1.8.4 / 2026110302 / 3 节）。",
   "_schema": "见 docs/reports/n28-update/DESIGN.md §1；与 update/self/version.json 结构相同，只有渠道不同",
   "_channel": "public",
   "_updatedAt": "2026-11-03",
-  "versionCode": 2026110301,
-  "versionName": "1.8.3",
+  "versionCode": 2026110302,
+  "versionName": "1.8.4",
   "changelog": [
-    "勿扰时段那个弹窗里，之前你选的解除时间如果是一个具体时刻（比如「到 15:39 解除」），再打开时一项都不高亮，看着像没生效。现在会把你当前的值单独排在第一行标出来，四个固定档照旧列在后面。设置页和聊天页顶栏两处都改了。",
-    "输入弹窗（内容过滤的词、会话标题这类）以前数据晚到一步就停在空白，你顺手点保存会把原来的词清掉 —— 屏蔽词被清空等于过滤失效。现在晚到的初值会补进去，你已经手动改过的字不会被冲掉。",
-    "选模型、改记忆「归属会话」这两个弹窗：手填的模型名不在服务商返回的清单里、或那个会话后来被删了，也会一项都不亮。现在会把当前值摆出来并高亮；归属会话那里以前点错一行会把记忆悄悄改成「全局可见」，现在只有真点中某个会话才会改。",
-    "聊天记录往上翻：以前读一次失败（库忙、刚好在关库）会被当成「已经翻到最早了」，那一屏历史就再也翻不出来。现在读失败什么也不动，再滑一下就重试。",
-    "设置页搜索：以前搜「心智」「生日」「忘事」「心智状态」全是空的 —— 那四个心智开关和心智状态入口其实就在那儿，只是没写进搜索词。现在都能搜到。",
-    "主动消息被静默、被系统拦下、或接口报错时，以前那条照样记成「今天已经找过你」：当天额度白烧，你答应过的事还会被当成「已兑现」。现在只有真到你手机上才开始算 —— 没发出去的那条，下一轮还能提。",
-    "连发两条消息时，上一轮收尾会把新一轮的登记项删掉：结果是「停止生成」点了没反应、界面以为已经停了、删会话也停不掉那一轮。现在每一轮只清自己那一份。",
-    "记忆按角色卡分开之后，导入时的「重复判定」还在拿全库比 —— 第二张卡导入同一份语料会被判成「全是重复」，一条都进不来。现在只跟你当前这张卡比。"
+    "生图以前只有 3 个预设，现在 8 个：可灵（Kwai-Kolors）、通义万相（Qwen-Image）、Z-Image-Turbo、Z-Image、Qwen-Image-Edit-2509、Qwen-Image-Edit、MOSS-Image，外加智谱的 cogview。点「选择厂商预设」就能一键填好地址和模型名，Key 还是你自己填。",
+    "看图从 5 个加到 7 个，听觉从 2 个加到 3 个，都补了硅基流动的 Qwen3-VL / Qwen3-Omni —— 一个能看图，一个连音频也能听。",
+    "主模型的「从厂商预设填充」多了两家：Kimi（月之暗面）和腾讯混元；硅基流动那边也从「没有内置清单」变成了 10 个可选。",
+    "每条预设后面都标着来源：核过官方文档的（比如官方 API 示例里出现过的型号）不带后缀；只在模型广场上见过、没在官方文档核到具体名字的，一律写「（未核实）」—— 别当成「点了就一定能用」。",
+    "尺寸设置对硅基流动从来没起过作用：它要的字段名是 image_size，我们一直发的是 size。现在发往硅基流动的请求会两个都带，你选的比例真的生效了。只有改图（Qwen-Image-Edit 系列）例外 —— 官方明确说不支持这个字段，尺寸由原图决定。",
+    "听觉模型在硅基流动上也接不上：它要的音频部件叫 audio_url，我们发的是 OpenAI 那套 input_audio。现在按服务商地址自动选形状，阿里百炼那几家一个字节都没变。",
+    "生图预设里的 FLUX.1-schnell 删了 —— 硅基流动官方公告写明它 2025 年 3 月就下线了，以前点它只会得到一个失败。",
+    "同样没把 ERNIE-Image-Turbo 加进来：官方公告写明 2026 年 9 月 30 日下线。宁可不列，也不给一个点了没用的名字。"
   ],
   "apk": [
     {
       "abi": "arm64-v8a",
-      "url": "https://github.com/xiaofengct/niannian/releases/download/v1.8.3/niannian-1.8.3-arm64-v8a.apk",
-      "sizeBytes": 30163423,
-      "sha256": "5ac876051caf5d1b1dce831afdf335d8bb0f3d3c043f2afe910878c717ca9900"
+      "url": "https://github.com/xiaofengct/niannian/releases/download/v1.8.4/niannian-1.8.4-arm64-v8a.apk",
+      "sizeBytes": 30165023,
+      "sha256": "dd23c4ae31b5abef08921a4e21160d46757cd9edcc6f5c152ad45fd122ff5457"
     }
   ],
   "force": false,
