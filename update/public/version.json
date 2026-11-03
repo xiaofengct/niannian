@@ -1,10 +1,10 @@
 {
-  "_note": "本文件描述 public 渠道（应用名「念念」/ 包名 com.aiai.pub）。2026-11-03（1.8.4）：①`AuxPresets` 三槽扩表（生图 8 条含 Kolors / Qwen-Image / Z-Image(-Turbo) / Qwen-Image-Edit(-2509) / MOSS-Image / cogview-3-flash；看图补硅基流动 Qwen3-VL-32B 与 Qwen3-Omni-30B-A3B；听觉补 Qwen3-Omni），删掉官方已下线的 FLUX.1-schnell、不列 ERNIE-Image-Turbo；②`ImageGenCodec.needsImageSize` 对硅基流动补 `image_size`（Edit 系跳过），尺寸设置终于生效；③`ContentPartDto.audioUrl` + `AudioUnderstandCodec.needsAudioUrl`，硅基流动走 `audio_url` 部件；④`ModelCatalog` 新增 MOONSHOT / HUNYUAN 两家预设与 SILICONFLOW 10 条内置清单 + 三家视觉名单。★ 本版是 1.8.3 之后的**功能补全 + 协议修复**：三槽厂商预设扩充（生图 3→8、看图 5→7、听觉 2→3）、主模型新增 Kimi / 腾讯混元 / 硅基流动内置清单，并修好两处一直没生效的协议差异（硅基流动的 image_size 尺寸字段、audio_url 音频部件）。sizeBytes / sha256 取自这一轮签名产物（V3 证书 SHA-256 = c0fe80a275f01f0d54f008c4a8bcd5b5c690e6151b2df594ca5e985eab8c0e0e；包内 assets/changelog.json 与源码逐字节一致，顶部 = 1.8.4 / 2026110302 / 3 节）。",
+  "_note": "本文件描述 public 渠道（应用名「念念」/ 包名 com.aiai.pub）。2026-11-03（1.8.3 / 2026110302）：①`AuxPresets` 三槽扩表（生图 8 条含 Kolors / Qwen-Image / Z-Image(-Turbo) / Qwen-Image-Edit(-2509) / MOSS-Image / cogview-3-flash；看图补硅基流动 Qwen3-VL-32B 与 Qwen3-Omni-30B-A3B；听觉补 Qwen3-Omni），删掉官方已下线的 FLUX.1-schnell、不列 ERNIE-Image-Turbo；②`ImageGenCodec.needsImageSize` 对硅基流动补 `image_size`（Edit 系跳过），尺寸设置终于生效；③`ContentPartDto.audioUrl` + `AudioUnderstandCodec.needsAudioUrl`，硅基流动走 `audio_url` 部件；④`ModelCatalog` 新增 MOONSHOT / HUNYUAN 两家预设与 SILICONFLOW 10 条内置清单 + 三家视觉名单；⑤上一批 8 处交互修复（勿扰弹窗 off-menu 高亮 / 输入弹窗初值 / 选模型与归属会话 / 往上翻历史 / 设置页搜索 / 投递才记账 / 连发两条的 stream 登记项 / 导入判重按角色卡）。★ 本版是「1.8.3（修复版）+ 预设扩充」合成的一版，用户要求仍叫 1.8.3（versionCode 2026110302）。三槽厂商预设扩充（生图 3→8、看图 5→7、听觉 2→3）、主模型新增 Kimi / 腾讯混元 / 硅基流动内置清单，并修好两处一直没生效的协议差异（硅基流动的 image_size 尺寸字段、audio_url 音频部件），另含上一批 8 处「选了没亮 / 点了没反应」的修复。sizeBytes / sha256 取自这一轮签名产物（V3 证书 SHA-256 = c0fe80a275f01f0d54f008c4a8bcd5b5c690e6151b2df594ca5e985eab8c0e0e；包内 assets/changelog.json 与源码逐字节一致，顶部 = 1.8.3 / 2026110302 / 6 节 16 条）。",
   "_schema": "见 docs/reports/n28-update/DESIGN.md §1；与 update/self/version.json 结构相同，只有渠道不同",
   "_channel": "public",
   "_updatedAt": "2026-11-03",
   "versionCode": 2026110302,
-  "versionName": "1.8.4",
+  "versionName": "1.8.3",
   "changelog": [
     "生图以前只有 3 个预设，现在 8 个：可灵（Kwai-Kolors）、通义万相（Qwen-Image）、Z-Image-Turbo、Z-Image、Qwen-Image-Edit-2509、Qwen-Image-Edit、MOSS-Image，外加智谱的 cogview。点「选择厂商预设」就能一键填好地址和模型名，Key 还是你自己填。",
     "看图从 5 个加到 7 个，听觉从 2 个加到 3 个，都补了硅基流动的 Qwen3-VL / Qwen3-Omni —— 一个能看图，一个连音频也能听。",
@@ -13,14 +13,22 @@
     "尺寸设置对硅基流动从来没起过作用：它要的字段名是 image_size，我们一直发的是 size。现在发往硅基流动的请求会两个都带，你选的比例真的生效了。只有改图（Qwen-Image-Edit 系列）例外 —— 官方明确说不支持这个字段，尺寸由原图决定。",
     "听觉模型在硅基流动上也接不上：它要的音频部件叫 audio_url，我们发的是 OpenAI 那套 input_audio。现在按服务商地址自动选形状，阿里百炼那几家一个字节都没变。",
     "生图预设里的 FLUX.1-schnell 删了 —— 硅基流动官方公告写明它 2025 年 3 月就下线了，以前点它只会得到一个失败。",
-    "同样没把 ERNIE-Image-Turbo 加进来：官方公告写明 2026 年 9 月 30 日下线。宁可不列，也不给一个点了没用的名字。"
+    "同样没把 ERNIE-Image-Turbo 加进来：官方公告写明 2026 年 9 月 30 日下线。宁可不列，也不给一个点了没用的名字。",
+    "勿扰时段那个弹窗：你选的解除时间存的是具体时刻（比如「到 15:39 解除」），而菜单里只有四个固定档 —— 于是再打开弹窗时一项都不亮，看着像没生效。现在会把你当前的值单独排在第一行并标出来，四个档照旧列在后面。设置页和聊天页顶栏两处都改了。",
+    "输入弹窗（内容过滤的词、会话标题这类）：以前数据晚到一步，输入框会停在空白，你顺手点保存就把原来的词清掉了 —— 屏蔽词被清空等于过滤失效。现在晚到的初值会补进去；你已经手动改过的字不会被冲掉。",
+    "选模型、改记忆「归属会话」这两个弹窗：手填的模型名不在服务商返回的清单里、或者那个会话后来被删了，也会一项都不亮。现在会把当前值摆出来并高亮。另外归属会话那里，以前点错一行会把这条记忆悄悄改成「全局可见」，现在只有真点中某个会话才会改。",
+    "聊天记录往上翻：以前读一次失败（库忙、刚好在关库）会被当成「已经翻到最早了」，那一屏历史就再也翻不出来。现在读失败什么也不动，再滑一下就重试。",
+    "设置页搜索：以前搜「心智」「生日」「忘事」「心智状态」全是空的 —— 那四个心智开关和心智状态入口其实就在那儿，只是没写进搜索词。现在都能搜到。",
+    "主动消息被静默、被系统拦下、或者接口报错时，以前那条照样记成「今天已经找过你」：当天的额度白烧，你答应过的事还会被当成「已兑现」。现在只有真到你手机上才开始算 —— 没发出去的那条，下一轮还能提。",
+    "连发两条消息时，上一轮收尾会把新一轮的登记项删掉。结果是「停止生成」点了没反应、界面以为已经停了、删会话也停不掉那一轮。现在每一轮只清自己那一份。",
+    "记忆按角色卡分开之后，导入时的「重复判定」还在拿全库比：第二张卡导入同一份语料会被判成「全是重复」，一条都进不来，而且没有别的入口绕过。现在只跟你当前这张卡比 —— 别的卡记过什么，不影响这一张导入。"
   ],
   "apk": [
     {
       "abi": "arm64-v8a",
-      "url": "https://github.com/xiaofengct/niannian/releases/download/v1.8.4/niannian-1.8.4-arm64-v8a.apk",
-      "sizeBytes": 30165023,
-      "sha256": "dd23c4ae31b5abef08921a4e21160d46757cd9edcc6f5c152ad45fd122ff5457"
+      "url": "https://github.com/xiaofengct/niannian/releases/download/v1.8.3/niannian-1.8.3-arm64-v8a.apk",
+      "sizeBytes": 30165011,
+      "sha256": "d77881afa8ef075601fa576c07cdd965b89b57d02a1cac7b9b2cdf2c65c194c9"
     }
   ],
   "force": false,
