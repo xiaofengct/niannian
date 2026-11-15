@@ -1,5 +1,5 @@
 {
-  "_note": "本文件描述 public 渠道（应用名「念念」/ 包名 com.aiai.pub）。2026-11-15（1.9.1 / 2026111501）：分段默认开 + 按空行切气泡 + 一次最多 8 条 / 用量摘要默认收起（点时间展开）/引用回复 / 消息按天分隔 / 语音条波形 / 语音条「同样的语音不重复合成」开关 / 上下文「手动总结」（手选总结到第几条、从头重来），另修三处：只引用不写字发不出、日期条让跳转落偏一条、语音去重跨引擎串音。sizeBytes / sha256 取自这一轮签名产物（V3 证书 SHA-256 = c0fe80a275f01f0d54f008c4a8bcd5b5c690e6151b2df594ca5e985eab8c0e0e；包内 assets/changelog.json 与源码逐字节一致，顶部 = 1.9.1 / 2026111501 / 9 节 32 条）。",
+  "_note": "本文件描述 public 渠道（应用名「念念」/ 包名 com.aiai.pub）。2026-11-15（1.9.1 / 2026111501）：分段默认开 + 按空行切气泡 + 一次最多 8 条 / 用量摘要默认收起（点时间展开）/引用回复 / 消息按天分隔 / 语音条波形 / 语音条「同样的语音不重复合成」开关 / 上下文「手动总结」（手选总结到第几条、从头重来），另修三处：只引用不写字发不出、日期条让跳转落偏一条、语音去重跨引擎串音；更新说明里的星号强调改成「」，Compose 不渲染 markdown。sizeBytes / sha256 取自这一轮签名产物（V3 证书 SHA-256 = c0fe80a275f01f0d54f008c4a8bcd5b5c690e6151b2df594ca5e985eab8c0e0e；包内 assets/changelog.json 与源码逐字节一致，顶部 = 1.9.1 / 2026111501 / 9 节 32 条）。",
   "_schema": "见 docs/reports/n28-update/DESIGN.md §1；与 update/self/version.json 结构相同，只有渠道不同",
   "_channel": "public",
   "_updatedAt": "2026-11-15",
@@ -20,8 +20,8 @@
     {
       "abi": "arm64-v8a",
       "url": "https://github.com/xiaofengct/niannian/releases/download/v1.9.1/niannian-1.9.1-arm64-v8a.apk",
-      "sizeBytes": 30292251,
-      "sha256": "460f36c4dece6b93ea25f43cf5388b48d31dbb15cbbc302a15457ef151779fd4"
+      "sizeBytes": 30292231,
+      "sha256": "c5ac5779daead6e7176efc119e8dc6a53dab2e709915a9f9c9a2d3f954b2e557"
     }
   ],
   "force": false,
