@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>念念 — 一个只待在你手机里的 AI 聊天 App</title>
-<meta name="description" content="念念（原名 ai爱）：原生安卓 AI 角色聊天 App。人设你来定，模型你自己接，聊天记录一条都不上云。28.6 MB，无需注册，无内购。">
+<meta name="description" content="念念（原名 ai爱）：原生安卓 AI 角色聊天 App。人设你来定，模型你自己接，聊天记录一条都不上云。28.9 MB，无需注册，无内购。">
 <meta name="theme-color" content="#0A0C0F">
 <style>
 :root{
@@ -221,6 +221,24 @@ footer .fnote{font-size:12.5px;line-height:1.8;color:#66727F;max-width:42ch}
   .rv{opacity:1;transform:none;transition:none}
   .phone,.btn,.card,.nav-cta{transition:none}
 }
+
+/* ---------- 识海（M4 可视化入口）---------- */
+.ms{background:#05070D;color:#E8EFFF;padding:96px 0;position:relative;overflow:hidden}
+.ms::before{content:"";position:absolute;inset:0;z-index:0;
+  background:radial-gradient(620px 400px at 20% 26%,rgba(167,139,250,.18),transparent 70%),
+             radial-gradient(560px 340px at 80% 72%,rgba(110,231,255,.13),transparent 70%)}
+.ms .wrap{position:relative;z-index:1}
+.ms .eyebrow{color:#8FA3C4}
+.ms h2{color:#fff}
+.ms .lede{color:#A9B8D0}
+.ms .btn-ghost{background:transparent;color:#E8EFFF;border:1px solid rgba(232,239,255,.28)}
+.ms .btn-ghost:hover{background:rgba(232,239,255,.09)}
+.ms .chips{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 0}
+.ms .chip{font-size:12.5px;padding:7px 14px;border-radius:999px;letter-spacing:.02em;
+  border:1px solid rgba(232,239,255,.16);color:#C3D1E6;background:rgba(255,255,255,.03)}
+.ms .chip b{font-weight:600;margin-right:7px}
+.ms .note{margin-top:20px;font-size:13px;color:#6F7F9C;line-height:1.75;max-width:62ch}
+.ms .note b{color:#9FB0CC;font-weight:600}
 </style>
 </head>
 <body>
@@ -233,6 +251,7 @@ footer .fnote{font-size:12.5px;line-height:1.8;color:#66727F;max-width:42ch}
       <a href="#start">上手</a>
       <a href="#model">接模型</a>
       <a href="#cards">角色卡</a>
+      <a href="#mindsea">识海</a>
       <a href="#update">更新与授权</a>
       <a href="#faq">常见问题</a>
     </div>
@@ -243,7 +262,7 @@ footer .fnote{font-size:12.5px;line-height:1.8;color:#66727F;max-width:42ch}
 <header class="hero" id="top">
   <div class="wrap">
     <div class="txt">
-      <span class="hero-eyebrow"><i></i>原生安卓 · v1.7.4 · 28.6 MB</span>
+      <span class="hero-eyebrow"><i></i>原生安卓 · v1.9.1 · 28.9 MB</span>
       <h1>念念<em>一个只待在你手机里的 AI 聊天 App</em></h1>
       <p class="lede">人设你来定，模型你自己接。聊天记录一条都不上云 —— 卸载之后，这里什么都没留下。</p>
       <div class="cta">
@@ -261,7 +280,7 @@ footer .fnote{font-size:12.5px;line-height:1.8;color:#66727F;max-width:42ch}
   </div>
   <div class="facts">
     <div class="wrap">
-      <div class="fact"><b>28.6<span style="font-size:.55em">MB</span></b><span>安装包体积</span></div>
+      <div class="fact"><b>28.9<span style="font-size:.55em">MB</span></b><span>安装包体积</span></div>
       <div class="fact"><b>0</b><span>条聊天记录上云</span></div>
       <div class="fact"><b>40</b><span>张原创角色卡</span></div>
       <div class="fact"><b>0</b><span>注册 / 内购 / 广告</span></div>
@@ -509,6 +528,66 @@ footer .fnote{font-size:12.5px;line-height:1.8;color:#66727F;max-width:42ch}
   </div>
 </section>
 
+<section id="whatsnew" style="background:var(--paper2)">
+  <div class="wrap">
+    <div class="rv">
+      <p class="eyebrow">What&rsquo;s new</p>
+      <h2>1.9.1 改了哪些看得见的地方</h2>
+      <p class="lede">App 里也能看完整的一版：设置 &rarr; 关于 &rarr; 更新说明。这里挑几条平时用得上的。</p>
+    </div>
+
+    <div class="bento" style="margin-top:36px">
+      <article class="card wide rv">
+        <h3>回复不再糊成一整段</h3>
+        <p>默认档位改成「尽量分段」：模型自己写空行的地方就断成两条气泡，一段太长了还会按句子再切，最多 8 条。<b>不会丢字</b> —— 切不完的并进最后一条，不会悄悄删掉。</p>
+        <p style="margin-top:10px" class="mut">升级上来的话你原来的选择不变：只有从没动过这一项的，才跟着新默认值走。</p>
+      </article>
+      <article class="card wide rv">
+        <h3>长按消息可以「引用回复」</h3>
+        <p>引用会带在这条消息的最前面，写成「引用 阿舟：……」再换行接正文。<b>只引用、不写字也能发出去。</b></p>
+      </article>
+      <article class="card wide rv">
+        <h3>聊天列表按天分开</h3>
+        <p>跨天的地方多一条小标签：<b>今天</b> / <b>昨天</b> / 11月13日 星期五。按上海时区算，跟消息底下那个时间用的是同一套。</p>
+      </article>
+      <article class="card wide rv">
+        <h3>语音条有了真波形</h3>
+        <p>波形是拿这条语音的采样算出来的，不是画几个随机高度给你看；放过的那部分会亮起来。另外新增一个开关「同样的语音不重复合成」—— 同一句话、同一个音色只合成一次，云端按量计费的时候省的是真钱。</p>
+      </article>
+      <article class="card wide rv">
+        <h3>上下文页可以自己定「总结到第几条」</h3>
+        <p>以前只能等它按轮数自动总结。现在可以手动跑一次，还能勾「从头重新总结」。最近几条始终是保护区，手选也越不过去。</p>
+      </article>
+      <article class="card wide rv">
+        <h3>顺手修掉的三处</h3>
+        <p>云端音色和本机音色编号相同，会复用成另一个引擎的音频；勾了引用但没写字时，发送键直接不见了；日期分隔条让「跳到这条消息」落偏一条。</p>
+      </article>
+    </div>
+    <p class="mut rv" style="font-size:14px">这一版没有动数据库结构，升级不用迁移，装上去还是你原来那些内容。</p>
+  </div>
+</section>
+
+<section id="mindsea" class="ms">
+  <div class="wrap">
+    <p class="eyebrow rv">Mind sea &middot; 一个可以点的演示</p>
+    <h2 class="rv">识海：她记住的东西，长什么样</h2>
+    <p class="lede rv">画面里每一点，都是一条具体的记忆——有编号、有日期、有它自己的内容。她「想事情」的时候，就是这些点在亮、在连、在暗下去。可以拖动旋转、滚轮放大，点开任意一点看它到底是什么。</p>
+
+    <div class="chips rv">
+      <span class="chip"><b style="color:#a78bfa">印象</b>刚发生，最先淡</span>
+      <span class="chip"><b style="color:#6ee7ff">情景</b>带时间地点的事</span>
+      <span class="chip"><b style="color:#fbbf24">语义</b>沉淀下来的事实</span>
+      <span class="chip"><b style="color:#7ef0c0">自我</b>她自己的设定</span>
+    </div>
+
+    <div class="cta rv">
+      <a class="btn btn-ghost" data-mindsea href="mind-sea.html?sharecode=UQUXPMNECZ" target="_blank" rel="noopener">打开识海 &rarr;</a>
+    </div>
+
+    <p class="note rv">这一页是<b>概念演示</b>：拿来看它长什么样的，不是 App 里的界面。它背后的东西已经有一部分进了安装包 —— 记忆的分层与淡忘、检索范围、主动开口，都能在「设置 → 记忆」和「设置 → 主动消息」里找到对应的开关；把记忆直接画成一片可以点的星海，这个可视化还在打磨。</p>
+  </div>
+</section>
+
 <section id="update" style="background:var(--paper2)">
   <div class="wrap">
     <div class="rv">
@@ -676,8 +755,8 @@ footer .fnote{font-size:12.5px;line-height:1.8;color:#66727F;max-width:42ch}
     <h3 class="rv">安装包与条款</h3>
     <div class="bento" style="margin-top:16px">
       <article class="card wide rv">
-        <h3 style="margin-top:0">安装包 · 28.6 MB</h3>
-        <p>只提供 arm64-v8a 真机包。在 <a href="https://github.com/xiaofengct/niannian/releases">Releases</a> 里下 <code>niannian-1.7.4-arm64-v8a.apk</code>。</p>
+        <h3 style="margin-top:0">安装包 · 28.9 MB</h3>
+        <p>只提供 arm64-v8a 真机包。在 <a href="https://github.com/xiaofengct/niannian/releases">Releases</a> 里下 <code>niannian-1.9.1-arm64-v8a.apk</code>。</p>
         <p style="margin-top:10px" class="mut">国内访问 GitHub 经常失败。打不开就挂代理，或者把仓库链接发给我，我从这边把安装包给你。</p>
       </article>
       <article class="card wide rv">
@@ -750,5 +829,18 @@ footer .fnote{font-size:12.5px;line-height:1.8;color:#66727F;max-width:42ch}
 })();
 </script>
 
+<script>
+/* 子页面也要带 sharecode，否则 403。这里从当前地址透传，避免写死失效。 */
+(function(){
+  var sc = new URLSearchParams(location.search).get('sharecode');
+  if(!sc) return;
+  var links = document.querySelectorAll('[data-mindsea]');
+  for(var i=0;i<links.length;i++){
+    var u = new URL(links[i].getAttribute('href'), location.href);
+    u.searchParams.set('sharecode', sc);
+    links[i].setAttribute('href', u.pathname + u.search);
+  }
+})();
+</script>
 </body>
 </html>
